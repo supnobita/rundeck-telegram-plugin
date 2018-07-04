@@ -2,6 +2,13 @@ pipeline {
     agent any
     
     stages {
+
+        stage('SonarQube analysis') {
+            steps {
+                sh "SONAR_SCANNER_HOME=${tool name: 'sonarscanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'} sbt sonarScan"
+            }
+        }
+
         stage('Build') {
             steps {
                 echo "Compiling..."
@@ -10,10 +17,5 @@ pipeline {
             }
         }
      
-        stage('SonarQube analysis') {
-            steps {
-                sh 'SONAR_SCANNER_HOME=${tool name: 'sonarscanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'} sbt sonarScan'
-            }
-        }
     }
 }
