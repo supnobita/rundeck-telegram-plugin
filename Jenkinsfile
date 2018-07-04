@@ -10,16 +10,16 @@ pipeline {
             }
         }
      
-    stage('SonarQube analysis') {
-    steps {
-        // requires SonarQube Scanner 2.8+
-        def scannerHome = tool 'sonarscanner';
-        withSonarQubeEnv('sonarscanner 2') {
-             withEnv(['SONAR_SCANNER_HOME=${scannerHome}']) {
-                sh 'sbt sonarScan'
+        stage('SonarQube analysis') {
+            steps {
+                // requires SonarQube Scanner 2.8+
+                def scannerHome = tool 'sonarscanner';
+                withSonarQubeEnv('sonarscanner 2') {
+                     withEnv(['SONAR_SCANNER_HOME=${scannerHome}']) {
+                        sh 'sbt sonarScan'
+                    }
+                }
             }
         }
-    }
-    }
     }
 }
