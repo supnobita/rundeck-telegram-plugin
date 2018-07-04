@@ -13,9 +13,9 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 // requires SonarQube Scanner 2.8+
-                def scannerHome = tool name: 'sonarscanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                //def scannerHome = tool name: 'sonarscanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                 withSonarQubeEnv('sonarscanner 2') {
-                     withEnv(['SONAR_SCANNER_HOME=${scannerHome}']) {
+                     withEnv(['SONAR_SCANNER_HOME=${tool name: 'sonarscanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}']) {
                         sh 'sbt sonarScan'
                     }
                 }
