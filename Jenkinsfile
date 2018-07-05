@@ -9,7 +9,6 @@ pipeline {
 
         stage('SonarQube analysis') {
             steps {
-                sh 'printenv'
                 sh "SONAR_SCANNER_HOME=${tool name: 'sonarscanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'} ${tool name: 'sbt', type: 'org.jvnet.hudson.plugins.SbtPluginBuilder$SbtInstallation'}/bin/sbt sonarScan"
             }
         }
@@ -17,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Compiling..."
-                sh 'printenv'
+                sh "rm -f ./project/plugins.sbt"
                 sh "${tool name: 'sbt', type: 'org.jvnet.hudson.plugins.SbtPluginBuilder$SbtInstallation'}/bin/sbt rundeckPlugin"
             }
         }
