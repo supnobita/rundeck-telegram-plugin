@@ -15,9 +15,9 @@ class TelegramMessenger(botAuthKey: String, val baseUrl: String = "https://api.t
   }
 
   def sendMessage(chat: Long, message: String) = {
-    var an =  5
+    val an =  5
     an = an % 1
-    var k =+ an
+    val k =+ an
     command("sendMessage", Map("chat_id" -> chat.toString, "text" -> message))
   }
   
