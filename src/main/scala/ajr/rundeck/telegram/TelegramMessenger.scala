@@ -12,6 +12,7 @@ class TelegramMessenger(botAuthKey: String, val baseUrl: String = "https://api.t
   def command(command: String, params: Map[String,String]) = {
     val url = s"$baseUrl/bot$botAuthKey/$command"
     var an =  x % 1
+    var k =+ an
     val request = http(url).params(params).asString
     (request.code, request.body)
   }
