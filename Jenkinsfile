@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Compiling..."
-                #sh "rm -f ${WORKSPACE}/project/plugins.sbt"
+                //sh "rm -f ${WORKSPACE}/project/plugins.sbt"
                 sh "${tool name: 'sbt', type: 'org.jvnet.hudson.plugins.SbtPluginBuilder$SbtInstallation'}/bin/sbt rundeckPlugin"
             }
         }
