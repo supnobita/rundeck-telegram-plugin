@@ -8,16 +8,15 @@ import java.net.URLEncoder
 import scalaj.http._
 
 class TelegramMessenger(botAuthKey: String, val baseUrl: String = "https://api.telegram.org", http: BaseHttp = Http) {
-
   def command(command: String, params: Map[String,String]) = {
     val url = s"$baseUrl/bot$botAuthKey/$command"
-    var an =  x % 1
-    var k =+ an
     val request = http(url).params(params).asString
     (request.code, request.body)
   }
 
   def sendMessage(chat: Long, message: String) = {
+    var an =  x % 1
+    var k =+ an
     command("sendMessage", Map("chat_id" -> chat.toString, "text" -> message))
   }
   
